@@ -1,70 +1,39 @@
-ifeq (,$(wildcard config.mak))
-$(error "config.mak is not present, run configure !")
-endif
-include config.mak
+# New ports collection makefile for:	devel/libdlna
+# Date created:				Sat Feb  9 20:20:00 UTC 2008
+# Whom:	      				Dave Grochowski <malus.x@gmail.com>
+#
+# $FreeBSD: ports/devel/libdlna/Makefile,v 1.2 2008/03/22 10:54:23 ehaupt Exp $
+#
 
-DISTFILE = libdlna-$(VERSION).tar.bz2
-PKGCONFIG_DIR = $(libdir)/pkgconfig
-PKGCONFIG_FILE = libdlna.pc
+PORTNAME=	libdlna
+PORTVERSION=	0.2.3
+CATEGORIES=	devel
+MASTER_SITES=	http://libdlna.geexbox.org/releases/ \
+		http://critical.ch/distfiles/ \
+		http://energy.critical.ch/distfiles/
 
-LIBTEST = test-libdlna
-SRCS = test-libdlna.c
+MAINTAINER=	malus.x@gmail.com
+COMMENT=	Reference DLNA open-source implementation
 
-EXTRADIST = AUTHORS \
-	ChangeLog \
-	configure \
-	COPYING \
-	README \
+LIB_DEPENDS+=	avcodec:${PORTSDIR}/multimedia/ffmpeg
 
-SUBDIRS = src \
+HAS_CONFIGURE=	yes
+USE_BZIP2=	yes
+USE_GMAKE=	yes
+USE_GNOME=	pkgconfig
+USE_LDCONFIG=	yes
 
-CFLAGS += -Isrc
-LDFLAGS += -Lsrc -ldlna
+CONFIGURE_ARGS+=	--prefix="${PREFIX}" --disable-optimize \
+			--includedir=${LOCALBASE}/include \
+			--libdir=${LOCALBASE}/lib
+CONFIGURE_ENV+=		LDFLAGS="${LDFLAGS}" CFLAGS="${CFLAGS}"
 
-ifeq ($(BUILD_STATIC),yes)
-  LDFLAGS += $(EXTRALIBS)
-endif
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
 
-all: lib test
+post-patch:
+	@${REINPLACE_CMD} -e \
+		's#\(PKGCONFIG_DIR = \).*#\1${LOCALBASE}/libdata/pkgconfig#' \
+		${WRKSRC}/Makefile
 
-lib:
-	$(MAKE) -C src
-
-test: $(LIBTEST)
-
-$(LIBTEST): $(SRCS)
-	$(CC) $? $(OPTFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
-
-clean:
-	$(MAKE) -C src clean
-	-$(RM) -f $(LIBTEST)
-
-distclean: clean
-	-$(RM) -f config.log
-	-$(RM) -f config.mak
-	-$(RM) -f $(PKGCONFIG_FILE)
-
-install: install-pkgconfig
-	$(MAKE) -C src install
-
-install-pkgconfig: $(PKGCONFIG_FILE)
-	$(INSTALL) -d "$(PKGCONFIG_DIR)"
-	$(INSTALL) -m 644 $< "$(PKGCONFIG_DIR)"
-
-.PHONY: clean distclean
-.PHONY: install install-pkgconfig
-
-dist:
-	-$(RM) $(DISTFILE)
-	dist=$(shell pwd)/libdlna-$(VERSION) && \
-	for subdir in . $(SUBDIRS); do \
-		mkdir -p "$$dist/$$subdir"; \
-		$(MAKE) -C $$subdir dist-all DIST="$$dist/$$subdir"; \
-	done && \
-	tar cjf $(DISTFILE) libdlna-$(VERSION)
-	-$(RM) -rf libdlna-$(VERSION)
-
-dist-all:
-	cp $(EXTRADIST) $(SRCS) Makefile $(DIST)
-
-.PHONY: dist dist-all
+.include <bsd.port.mk>

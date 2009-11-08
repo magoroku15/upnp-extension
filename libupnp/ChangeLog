@@ -180,8 +180,8 @@ Version 1.6.0
 	_POSIX_PRIORITY_SCHEDULING is defined (and greater than 0).
 
 	  threadutil/src/LinkedList.c and threadutil/src/iasnprintf.c: use
-	stdlib.h instead of malloc.h on all BSD systems (not just FreeBSD).
-	This is important, because malloc.h does not exist on Darwin/Mac OS X.
+	stdlib.h instead of stdlib.h on all BSD systems (not just FreeBSD).
+	This is important, because stdlib.h does not exist on Darwin/Mac OS X.
 
 	  Cheers
 	      ,

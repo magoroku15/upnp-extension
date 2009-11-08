@@ -4445,7 +4445,7 @@ static const OptionDef options[] = {
     { "formats", OPT_EXIT, {(void*)show_formats}, "show available formats, codecs, protocols, ..." },
     { "n", OPT_BOOL, {(void *)&no_launch }, "enable no-launch mode" },
     { "d", 0, {(void*)opt_debug}, "enable debug mode" },
-    { "f", HAS_ARG | OPT_STRING, {(void*)&config_filename }, "use configfile instead of /etc/ffserver.conf", "configfile" },
+    { "f", HAS_ARG | OPT_STRING, {(void*)&config_filename }, "use configfile instead of /usr/local/etc/ffserver.conf", "configfile" },
     { NULL },
 };
 
@@ -4457,7 +4457,7 @@ int main(int argc, char **argv)
 
     show_banner();
 
-    config_filename = "/etc/ffserver.conf";
+    config_filename = "/usr/local/etc/ffserver.conf";
 
     my_program_name = argv[0];
     my_program_dir = getcwd(0, 0);

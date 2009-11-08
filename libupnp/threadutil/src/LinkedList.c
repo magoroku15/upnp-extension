@@ -34,7 +34,7 @@
 #if (defined(BSD) && BSD >= 199306) || defined(__OSX__) || defined(__APPLE__)
 #include <stdlib.h>
 #else
-#include <malloc.h>
+#include <stdlib.h>
 #endif
 #include <assert.h>
 

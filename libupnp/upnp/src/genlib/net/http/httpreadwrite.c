@@ -58,7 +58,7 @@
 	#include <sys/utsname.h>
 #else
 	#include <winsock2.h>
-	#include <malloc.h>
+	#include <stdlib.h>
 #endif
 #include "unixutil.h"
 #include "upnp.h"

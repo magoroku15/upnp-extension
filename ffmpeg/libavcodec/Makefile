@@ -373,9 +373,7 @@ OBJS-$(HAVE_W32THREADS)                += w32thread.o
 
 OBJS-$(HAVE_XVMC)                      += xvmcvideo.o
 
-ifndef CONFIG_SWSCALE
 OBJS += imgresample.o
-endif
 
 # processor-specific code
 ifdef HAVE_MMX
