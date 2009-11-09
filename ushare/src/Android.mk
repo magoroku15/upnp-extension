@@ -30,10 +30,10 @@ LOCAL_CFLAGS := \
 	-D_FILE_OFFSET_BITS=64 \
 	-DVERSION=\"1.1a\"  -DPACKAGE=\"ushare\" -DPACKAGE_NAME=\"uShare\" -DSYSCONFDIR=\"/data/ushare\" -DLOCALEDIR=\"/data/ushare/locale\"
 
-LOCAL_C_INCLUDES += external/upnp/upnp/inc
-LOCAL_C_INCLUDES += external/upnp/ixml/inc
-LOCAL_C_INCLUDES += external/libdlna/src
-LOCAL_C_INCLUDES += external/ushare
+LOCAL_C_INCLUDES += external/upnp-extension/libupnp/upnp/inc
+LOCAL_C_INCLUDES += external/upnp-extension/libupnp/ixml/inc
+LOCAL_C_INCLUDES += external/upnp-extension/libdlna/src
+LOCAL_C_INCLUDES += external/upnp-extension/ushare
 LOCAL_C_INCLUDES += external/zlib
 
 

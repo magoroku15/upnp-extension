@@ -28,7 +28,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE -DDEBUG
 LOCAL_C_INCLUDES += $(LOCAL_PATH)
-#LOCAL_C_INCLUDES += $(LOCAL_PATH)/ixml/inc/
+LOCAL_C_INCLUDES += external/upnp-extension/ffmpeg/
 #LOCAL_C_INCLUDES += $(LOCAL_PATH)/threadutil/inc/
 #LOCAL_C_INCLUDES += $(LOCAL_PATH)/upnp/inc/
 #LOCAL_C_INCLUDES += $(LOCAL_PATH)/upnp/src/inc/
@@ -37,9 +37,9 @@ LOCAL_MODULE:= libdlna
 
 include $(BUILD_STATIC_LIBRARY)
 
-include $(PV_TOP)/libavcodec/Android.mk
-include $(PV_TOP)/libavutil/Android.mk
-include $(PV_TOP)/libavformat/Android.mk
+#include $(PV_TOP)/libavcodec/Android.mk
+#include $(PV_TOP)/libavutil/Android.mk
+#include $(PV_TOP)/libavformat/Android.mk
 
 ############################################
 
