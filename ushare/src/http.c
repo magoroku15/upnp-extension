@@ -28,8 +28,8 @@
 #include <unistd.h>
 #include <errno.h>
 
-#include <upnp/upnp.h>
-#include <upnp/upnptools.h>
+#include <upnp.h>
+#include <upnptools.h>
 
 #include "services.h"
 #include "cds.h"
@@ -310,17 +310,17 @@ http_seek (UpnpWebFileHandle fh, off_t offset, int origin)
   switch (origin)
   {
   case SEEK_SET:
-    log_verbose ("Attempting to seek to %lld (was at %lld) in %s\n",
+    log_verbose ("Attempting to seek to %ld (was at %ld) in %s\n",
                 offset, file->pos, file->fullpath);
     newpos = offset;
     break;
   case SEEK_CUR:
-    log_verbose ("Attempting to seek by %lld from %lld in %s\n",
+    log_verbose ("Attempting to seek by %ld from %ld in %s\n",
                 offset, file->pos, file->fullpath);
     newpos = file->pos + offset;
     break;
   case SEEK_END:
-    log_verbose ("Attempting to seek by %lld from end (was at %lld) in %s\n",
+    log_verbose ("Attempting to seek by %ld from end (was at %ld) in %s\n",
                 offset, file->pos, file->fullpath);
 
     if (file->type == FILE_LOCAL)

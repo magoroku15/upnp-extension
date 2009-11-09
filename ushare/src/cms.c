@@ -20,8 +20,8 @@
  */
 
 #include <stdlib.h>
-#include <upnp/upnp.h>
-#include <upnp/upnptools.h>
+#include <upnp.h>
+#include <upnptools.h>
 
 #include "ushare.h"
 #include "services.h"

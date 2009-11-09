@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#if (defined(__unix__) || defined(unix)) && !defined(USG)
+#if (1 || defined(__unix__) || defined(unix)) && !defined(USG)
 #include <sys/param.h>
 #endif
 
@@ -29,7 +29,7 @@
 
 #include "osdep.h"
 
-#if (defined(BSD) || defined(__FreeBSD__) || defined(__APPLE__))
+#if (1 || defined(BSD) || defined(__FreeBSD__) || defined(__APPLE__))
 char *
 strndup (const char *s, size_t n)
 {

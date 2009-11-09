@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#include <upnp/upnp.h>
-#include <upnp/upnptools.h>
+#include <upnp.h>
+#include <upnptools.h>
 
 #include "ushare.h"
 #include "services.h"

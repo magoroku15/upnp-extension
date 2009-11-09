@@ -818,6 +818,7 @@ av_log(s, AV_LOG_DEBUG, "sync\n");
     }
 }
 
+
 static int64_t nut_read_timestamp(AVFormatContext *s, int stream_index, int64_t *pos_arg, int64_t pos_limit){
     NUTContext *nut = s->priv_data;
     ByteIOContext *bc = s->pb;

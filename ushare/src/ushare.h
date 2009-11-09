@@ -22,8 +22,8 @@
 #ifndef _USHARE_H_
 #define _USHARE_H_
 
-#include <upnp/upnp.h>
-#include <upnp/upnptools.h>
+#include <upnp.h>
+#include <upnptools.h>
 #include <stdbool.h>
 #include <pthread.h>
 

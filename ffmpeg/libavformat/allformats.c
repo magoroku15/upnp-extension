@@ -127,7 +127,7 @@ void av_register_all(void)
     REGISTER_DEMUXER  (MXF, mxf);
     REGISTER_DEMUXER  (NSV, nsv);
     REGISTER_MUXER    (NULL, null);
-    REGISTER_MUXDEMUX (NUT, nut);
+    //REGISTER_MUXDEMUX (NUT, nut);
     REGISTER_DEMUXER  (NUV, nuv);
     REGISTER_MUXDEMUX (OGG, ogg);
     REGISTER_DEMUXER  (OMA, oma);

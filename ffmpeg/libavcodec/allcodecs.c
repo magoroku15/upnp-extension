@@ -149,7 +149,7 @@ void avcodec_register_all(void)
     REGISTER_ENCDEC  (SVQ1, svq1);
     REGISTER_DECODER (SVQ3, svq3);
     REGISTER_ENCDEC  (TARGA, targa);
-    REGISTER_DECODER (THEORA, theora);
+    //REGISTER_DECODER (THEORA, theora);
     REGISTER_DECODER (THP, thp);
     REGISTER_DECODER (TIERTEXSEQVIDEO, tiertexseqvideo);
     REGISTER_ENCDEC  (TIFF, tiff);
@@ -188,7 +188,7 @@ void avcodec_register_all(void)
     REGISTER_DECODER (DCA, dca);
     REGISTER_DECODER (DSICINAUDIO, dsicinaudio);
     REGISTER_ENCDEC  (FLAC, flac);
-    REGISTER_DECODER (IMC, imc);
+    //REGISTER_DECODER (IMC, imc);
     REGISTER_DECODER (MACE3, mace3);
     REGISTER_DECODER (MACE6, mace6);
     REGISTER_DECODER (MLP, mlp);
@@ -200,7 +200,7 @@ void avcodec_register_all(void)
     REGISTER_DECODER (MPC8, mpc8);
     REGISTER_DECODER (NELLYMOSER, nellymoser);
     REGISTER_DECODER (QDM2, qdm2);
-    REGISTER_DECODER (RA_144, ra_144);
+    //REGISTER_DECODER (RA_144, ra_144);
     REGISTER_DECODER (RA_288, ra_288);
     REGISTER_DECODER (SHORTEN, shorten);
     REGISTER_DECODER (SMACKAUD, smackaud);
@@ -209,7 +209,7 @@ void avcodec_register_all(void)
     REGISTER_DECODER (TRUESPEECH, truespeech);
     REGISTER_DECODER (TTA, tta);
     REGISTER_DECODER (VMDAUDIO, vmdaudio);
-    REGISTER_ENCDEC  (VORBIS, vorbis);
+    //REGISTER_ENCDEC  (VORBIS, vorbis);
     REGISTER_DECODER (WAVPACK, wavpack);
     REGISTER_ENCDEC  (WMAV1, wmav1);
     REGISTER_ENCDEC  (WMAV2, wmav2);
@@ -220,8 +220,8 @@ void avcodec_register_all(void)
     REGISTER_DECODER (PCM_DVD, pcm_dvd);
     REGISTER_ENCDEC  (PCM_F32BE, pcm_f32be);
     REGISTER_ENCDEC  (PCM_MULAW, pcm_mulaw);
-    REGISTER_ENCDEC  (PCM_S8, pcm_s8);
-    REGISTER_ENCDEC  (PCM_S16BE, pcm_s16be);
+    //REGISTER_ENCDEC  (PCM_S8, pcm_s8);
+    //REGISTER_ENCDEC  (PCM_S16BE, pcm_s16be);
     REGISTER_ENCDEC  (PCM_S16LE, pcm_s16le);
     REGISTER_DECODER (PCM_S16LE_PLANAR, pcm_s16le_planar);
     REGISTER_ENCDEC  (PCM_S24BE, pcm_s24be);
@@ -278,22 +278,22 @@ void avcodec_register_all(void)
     REGISTER_ENCDEC  (DVDSUB, dvdsub);
 
     /* external libraries */
-    REGISTER_DECODER (LIBA52, liba52);
+    //REGISTER_DECODER (LIBA52, liba52);
     REGISTER_ENCDEC  (LIBAMR_NB, libamr_nb);
     REGISTER_ENCDEC  (LIBAMR_WB, libamr_wb);
     REGISTER_ENCDEC  (LIBDIRAC, libdirac);
     REGISTER_ENCODER (LIBFAAC, libfaac);
-    REGISTER_DECODER (LIBFAAD, libfaad);
+    //REGISTER_DECODER (LIBFAAD, libfaad);
     REGISTER_ENCDEC  (LIBGSM, libgsm);
     REGISTER_ENCDEC  (LIBGSM_MS, libgsm_ms);
     REGISTER_ENCODER (LIBMP3LAME, libmp3lame);
     REGISTER_ENCDEC  (LIBSCHROEDINGER, libschroedinger);
-    REGISTER_ENCODER (LIBTHEORA, libtheora);
-    REGISTER_ENCODER (LIBVORBIS, libvorbis);
-    REGISTER_ENCODER (LIBX264, libx264);
+    //REGISTER_ENCODER (LIBTHEORA, libtheora);
+    //REGISTER_ENCODER (LIBVORBIS, libvorbis);
+    //REGISTER_ENCODER (LIBX264, libx264);
     REGISTER_ENCODER (LIBXVID, libxvid);
 #if LIBAVCODEC_VERSION_INT < ((52<<16)+(0<<8)+0)
-    REGISTER_DECODER (MPEG4AAC, mpeg4aac);
+    //REGISTER_DECODER (MPEG4AAC, mpeg4aac);
 #endif
 
     /* parsers */
@@ -319,13 +319,13 @@ void avcodec_register_all(void)
     /* bitstream filters */
     REGISTER_BSF     (DUMP_EXTRADATA, dump_extradata);
     REGISTER_BSF     (H264_MP4TOANNEXB, h264_mp4toannexb);
-    REGISTER_BSF     (IMX_DUMP_HEADER, imx_dump_header);
+    //REGISTER_BSF     (IMX_DUMP_HEADER, imx_dump_header);
     REGISTER_BSF     (MJPEGA_DUMP_HEADER, mjpega_dump_header);
-    REGISTER_BSF     (MP3_HEADER_COMPRESS, mp3_header_compress);
-    REGISTER_BSF     (MP3_HEADER_DECOMPRESS, mp3_header_decompress);
-    REGISTER_BSF     (MOV2TEXTSUB, mov2textsub);
-    REGISTER_BSF     (NOISE, noise);
-    REGISTER_BSF     (REMOVE_EXTRADATA, remove_extradata);
-    REGISTER_BSF     (TEXT2MOVSUB, text2movsub);
+    //REGISTER_BSF     (MP3_HEADER_COMPRESS, mp3_header_compress);
+    //REGISTER_BSF     (MP3_HEADER_DECOMPRESS, mp3_header_decompress);
+    //REGISTER_BSF     (MOV2TEXTSUB, mov2textsub);
+    //REGISTER_BSF     (NOISE, noise);
+    //REGISTER_BSF     (REMOVE_EXTRADATA, remove_extradata);
+    //REGISTER_BSF     (TEXT2MOVSUB, text2movsub);
 }
 

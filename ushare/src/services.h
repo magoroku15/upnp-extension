@@ -22,8 +22,8 @@
 #ifndef _SERVICES_H_
 #define _SERVICES_H_
 
-#include <upnp/upnp.h>
-#include <upnp/upnptools.h>
+#include <upnp.h>
+#include <upnptools.h>
 #include "ushare.h"
 
 struct service_action_t {

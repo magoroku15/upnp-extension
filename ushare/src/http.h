@@ -22,8 +22,8 @@
 #ifndef _HTTP_H_
 #define _HTTP_H_
 
-#include <upnp/upnp.h>
-#include <upnp/upnptools.h>
+#include <upnp.h>
+#include <upnptools.h>
 
 struct UpnpVirtualDirCallbacks virtual_dir_callbacks;
 

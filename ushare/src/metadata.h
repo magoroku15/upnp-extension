@@ -21,8 +21,8 @@
 #ifndef _METADATA_H_
 #define _METADATA_H_
 
-#include <upnp/upnp.h>
-#include <upnp/upnptools.h>
+#include <upnp.h>
+#include <upnptools.h>
 #include <stdbool.h>
 #include <sys/types.h>
 
