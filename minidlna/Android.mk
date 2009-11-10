@@ -3,6 +3,18 @@ TOP := $(LOCAL_PATH)
 
 include $(CLEAR_VARS)
 
+TARGET_DLNA_CONF_DIR := $(TARGET_OUT)/system/etc
+LOCAL_DLNA_CONF_DIR  := $(LOCAL_PATH)
+
+copy_from := minidlna.conf
+copy_to   := $(addprefix $(TARGET_DLNA_CONF_DIR)/,$(copy_from))
+copy_from := $(addprefix $(LOCAL_DLNA_CONF_DIR)/,$(copy_from))
+$(copy_to) : $(TARGET_DLNA_CONF_DIR)/% : $(LOCAL_DLNA_CONF_DIR)/% | $(ACP)
+        $(transform-prebuilt-to-target)
+
+ALL_PREBUILT += $(copy_to)
+
+
 LOCAL_SRC_FILES := minidlna.c upnphttp.c upnpdescgen.c upnpsoap.c \
            upnpreplyparse.c minixml.c \
            getifaddr.c daemonize.c upnpglobalvars.c \
@@ -37,7 +49,7 @@ LOCAL_STATIC_LIBRARIES := libupnp libdlna libavformat libavcodec libavutil libz 
 
 LOCAL_SHARED_LIBRARIES := libsqlite 
 
-LOCAL_MODULE:= miniupnp
+LOCAL_MODULE:= minidlna
 
 include $(BUILD_EXECUTABLE)
 

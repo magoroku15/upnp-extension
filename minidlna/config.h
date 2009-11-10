@@ -10,7 +10,7 @@
 #define OS_URL		"http://www.debian.org/"
 
 /* full path of the file database */
-#define DB_PATH		"/tmp/minidlna"
+#define DB_PATH		"/data/local/tmp/minidlna"
 
 /* Comment the following line to use home made daemonize() func instead
  * of BSD daemon() */
