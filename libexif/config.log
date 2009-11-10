@@ -484,7 +484,7 @@ configure:19737: result: yes
 configure:19918: checking for sqrt
 configure:19974: gcc -o conftest    conftest.c  >&5
 conftest.c:44: warning: conflicting types for built-in function 'sqrt'
-/tmp/ccUQS8mo.o: In function `main':
+/tmp/ccE446Qv.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `sqrt'
 collect2: ld returned 1 exit status
 configure:19980: $? = 1
@@ -635,6 +635,7 @@ config.status:720: creating libexif-uninstalled.pc
 config.status:720: creating binary/Makefile
 config.status:720: creating contrib/Makefile
 config.status:720: creating config.h
+config.status:952: config.h is unchanged
 config.status:998: executing depfiles commands
 config.status:998: executing default-1 commands
 
@@ -763,17 +764,17 @@ lt_lt_cv_sys_global_symbol_to_cdecl='"sed -n -e '\''s/^. .* \\(.*\\)\$/extern in
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /home/hideo/zz/libexif-0.6.17/missing --run aclocal-1.10'
+ACLOCAL='${SHELL} /home/hideo/mydroid-donut/external/upnp-extension/libexif/missing --run aclocal-1.10'
 AMDEPBACKSLASH='\'
 AMDEP_FALSE='#'
 AMDEP_TRUE=''
-AMTAR='${SHELL} /home/hideo/zz/libexif-0.6.17/missing --run tar'
+AMTAR='${SHELL} /home/hideo/mydroid-donut/external/upnp-extension/libexif/missing --run tar'
 AM_CPPFLAGS=' -DGETTEXT_PACKAGE=\"libexif-12\" -DLOCALEDIR=\"$(datadir)/locale\" -I$(top_srcdir) -I$(top_builddir) -g -Wall -Wmissing-declarations -Wmissing-prototypes'
 AM_LDFLAGS=' -g -Wall'
 AR='ar'
-AUTOCONF='${SHELL} /home/hideo/zz/libexif-0.6.17/missing --run autoconf'
-AUTOHEADER='${SHELL} /home/hideo/zz/libexif-0.6.17/missing --run autoheader'
-AUTOMAKE='${SHELL} /home/hideo/zz/libexif-0.6.17/missing --run automake-1.10'
+AUTOCONF='${SHELL} /home/hideo/mydroid-donut/external/upnp-extension/libexif/missing --run autoconf'
+AUTOHEADER='${SHELL} /home/hideo/mydroid-donut/external/upnp-extension/libexif/missing --run autoheader'
+AUTOMAKE='${SHELL} /home/hideo/mydroid-donut/external/upnp-extension/libexif/missing --run automake-1.10'
 AWK='gawk'
 BUILD_DOCS_FALSE='#'
 BUILD_DOCS_TRUE=''
@@ -832,7 +833,7 @@ LN_S='ln -s'
 LTLIBICONV=''
 LTLIBINTL=''
 LTLIBOBJS=''
-MAKEINFO='${SHELL} /home/hideo/zz/libexif-0.6.17/missing --run makeinfo'
+MAKEINFO='${SHELL} /home/hideo/mydroid-donut/external/upnp-extension/libexif/missing --run makeinfo'
 MATHLIBS='-lm'
 MKINSTALLDIRS='$(top_builddir)/./mkinstalldirs'
 MSGFMT='/usr/bin/msgfmt'
@@ -888,7 +889,7 @@ host_vendor='pc'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='$(SHELL) /home/hideo/zz/libexif-0.6.17/install-sh'
+install_sh='$(SHELL) /home/hideo/mydroid-donut/external/upnp-extension/libexif/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 localedir='$(datadir)/locale'

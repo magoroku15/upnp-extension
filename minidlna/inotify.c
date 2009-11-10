@@ -35,6 +35,8 @@
 
 #define PATH_BUF_SIZE PATH_MAX
 
+#define rindex strrchr
+
 struct watch
 {
 	int wd;		/* watch descriptor */

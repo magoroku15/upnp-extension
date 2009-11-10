@@ -743,7 +743,7 @@ exif_tag_get_title_in_ifd (ExifTag tag, ExifIfd ifd)
 	 * 
 	 * bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	 */
-	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+	//bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 	if (ifd >= EXIF_IFD_COUNT) return NULL;
 	for (i = 0; ExifTagTable[i].title; i++)
 		if ((ExifTagTable[i].tag == tag) && RECORDED) break;
@@ -761,7 +761,7 @@ exif_tag_get_description_in_ifd (ExifTag tag, ExifIfd ifd)
 	 * 
 	 * bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	 */
-	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+	//bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 
 	if (ifd >= EXIF_IFD_COUNT) return NULL;
 	for (i = 0; ExifTagTable[i].description; i++)

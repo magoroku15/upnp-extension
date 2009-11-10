@@ -36,6 +36,9 @@
 #include "scanner.h"
 #include "log.h"
 
+#define rindex strrchr
+
+
 int valid_cache = 0;
 
 struct virtual_item

@@ -588,7 +588,7 @@ exif_entry_get_value (ExifEntry *e, char *val, unsigned int maxlen)
 	 * 
 	 * bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	 */
-	bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+	//bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 
 	/* make sure the returned string is zero terminated */
 	memset (val, 0, maxlen);

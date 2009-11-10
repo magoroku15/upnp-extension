@@ -52,6 +52,8 @@
 #include "tivo_utils.h"
 #endif
 
+#define MAX(a,b) ( ((a)>(b) ) ? (a) : (b) ) 
+
 #if SQLITE_VERSION_NUMBER < 3005001
 # warning "Your SQLite3 library appears to be too old!  Please use 3.5.1 or newer."
 # define sqlite3_threadsafe() 0

@@ -93,6 +93,18 @@ getsysaddr(char * buf, int len)
 int
 getsyshwaddr(char * buf, int len)
 {
+#if 1
+	if(len > 12)
+	{
+		memset(buf, 0xff, 12);
+	}
+	else if(len == 6)
+	{
+		memset(buf, 0xff, 6);
+	}
+	return 0;
+
+#else
 	struct if_nameindex *ifaces, *if_idx;
 	unsigned char mac[6];
 	struct ifreq ifr;
@@ -141,6 +153,7 @@ getsyshwaddr(char * buf, int len)
 		}
 	}
 	return ret;
+#endif
 }
 
 int
