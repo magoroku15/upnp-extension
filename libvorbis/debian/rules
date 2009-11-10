@@ -1,0 +1,120 @@
+#! /usr/bin/make -f
+
+include /usr/share/quilt/quilt.make
+
+###
+
+# Configure arguments
+
+confflags = --prefix=/usr --enable-static
+
+DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+confflags += --build $(DEB_BUILD_GNU_TYPE)
+
+# Only specify --host when cross-compiling
+ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+    confflags += --host $(DEB_HOST_GNU_TYPE)
+endif
+
+###
+
+# Directory to make the build on
+
+objdir = $(CURDIR)/obj-$(DEB_HOST_GNU_TYPE)
+
+###
+
+# CFLAGS
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+ifeq (armel,$(DEB_HOST_ARCH))
+	CFLAGS += -fno-finite-math-only
+endif
+
+###
+
+configure: configure-stamp
+configure-stamp: $(QUILT_STAMPFN)
+	dh_testdir
+
+	ln -sf /usr/share/misc/config.sub .
+	ln -sf /usr/share/misc/config.guess .
+
+	mkdir -p $(objdir)
+	cd $(objdir) && \
+	env CFLAGS="$(CFLAGS)" ../configure $(confflags)
+
+	touch $@
+
+#
+
+build: build-stamp
+build-stamp: configure-stamp
+	$(MAKE) -C $(objdir)
+
+	touch $@
+
+#
+
+clean: unpatch
+	dh_testdir
+	dh_testroot
+
+	rm -f configure-stamp build-stamp install-stamp
+	rm -f config.guess config.sub
+
+	# Remove build tree
+	rm -rf $(objdir)
+
+	dh_clean
+
+#
+
+install: install-stamp
+install-stamp:
+	dh_testdir
+	dh_testroot
+	dh_clean
+	dh_installdirs
+	$(MAKE) -C $(objdir) install DESTDIR=$(CURDIR)/debian/tmp
+	dh_install --list-missing $(DH_INSTALL_EXCLUDE)
+	touch $@ 
+
+#
+
+binary: binary-arch
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs CHANGES
+	dh_installdocs
+	dh_installexamples
+	dh_installmime
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs -V -- -c4
+	dh_installdeb
+	dh_shlibdeps -ldebian/libvorbis0a/usr/lib
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-indep:
+	@echo "Nothing to do."
+
+#
+
+.PHONY: configure build clean install binary binary-arch binary-indep

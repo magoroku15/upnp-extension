@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02_doc_path.dpatch by Joshua Kwan <joshk@triplehelix.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Correct path to documentation. closes: #413411.
+
+@DPATCH@
+diff -urNad flac~/man/flac.sgml flac/man/flac.sgml
+--- flac~/man/flac.sgml	2009-08-04 08:44:05.000000000 +0200
++++ flac/man/flac.sgml	2009-08-04 08:49:17.000000000 +0200
+@@ -697,7 +697,7 @@
+ 
+     <para>metaflac(1).</para>
+ 
+-    <para>The programs are documented fully by HTML format documentation, available in <filename>/usr/share/doc/flac/html</filename> on &debian; systems.</para>
++    <para>The programs are documented fully by HTML format documentation, available in <filename>/usr/share/doc/libflac-doc/html</filename> on &debian; systems.</para>
+   </refsect1>
+   <refsect1>
+     <title>AUTHOR</title>

@@ -1,0 +1,5 @@
+debian/tmp/usr/include/id3tag.h /usr/include
+debian/tmp/usr/lib/libid3tag.a /usr/lib
+debian/tmp/usr/lib/libid3tag.la /usr/lib
+debian/tmp/usr/lib/libid3tag.so /usr/lib
+debian/id3tag.pc /usr/lib/pkgconfig

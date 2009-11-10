@@ -1,0 +1,4 @@
+libexif.pc usr/lib/pkgconfig
+usr/include/libexif/*
+usr/lib/lib*.{a,la,so}
+doc/doxygen-output/* usr/share/doc/libexif-dev

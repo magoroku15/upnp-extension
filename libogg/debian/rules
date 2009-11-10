@@ -1,0 +1,77 @@
+#! /usr/bin/make -f
+
+NUM_CPUS = $(shell getconf _NPROCESSORS_ONLN 2>/dev/null)
+PARALLEL = $(subst parallel=,,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+NJOBS    = -j$(or $(PARALLEL),$(NUM_CPUS),1)
+
+
+#export DH_VERBOSE=1
+export DH_OPTIONS
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS = -Wall -g -O0
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+
+objdir = objs
+
+
+clean:
+	dh_testdir
+	dh_testroot
+	$(RM) build-stamp install-stamp
+	$(RM) -r $(objdir)
+	dh_clean
+
+
+$(objdir)/config.status: configure
+	dh_testdir
+	mkdir -p $(objdir)
+	cd $(objdir) && ../configure --host=$(DEB_HOST_GNU_TYPE)	\
+				     --build=$(DEB_BUILD_GNU_TYPE)	\
+				     --enable-static			\
+				     --prefix=/usr
+
+build: build-stamp
+build-stamp: $(objdir)/config.status
+	dh_testdir
+	$(MAKE) $(NJOBS) -C $(objdir)
+	touch $@
+
+
+install: install-stamp
+install-stamp:
+	dh_testdir
+	$(MAKE) -C $(objdir) install DESTDIR=$(CURDIR)/debian/tmp
+	touch $@ 
+
+
+binary: binary-arch
+
+binary-arch: DH_OPTIONS = -a
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_install --sourcedir=debian/tmp
+	dh_installdocs
+	dh_installchangelogs CHANGES
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs -V -- -c4
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-indep:
+
+
+.PHONY: clean build install binary binary-arch binary-indep

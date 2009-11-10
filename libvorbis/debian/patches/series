@@ -1,0 +1,5 @@
+upstream-r14811_huffman_sanity_checks.diff 
+local-remove_nonfree_docs.diff
+CVE-2008-1420.patch
+CVE-2008-1423+CVE-2008-1419.patch
+CVE-2009-2663.patch

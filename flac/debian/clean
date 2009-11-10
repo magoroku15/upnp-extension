@@ -1,0 +1,4 @@
+config.guess
+config.sub
+man/flac.1
+man/metaflac.1

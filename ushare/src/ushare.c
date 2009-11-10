@@ -29,13 +29,10 @@
 #include <getopt.h>
 
 
-#if (1 | defined(BSD) || defined(__FreeBSD__) || defined(__APPLE__))
+#if (defined(HAVE_ANDROID_OS) | defined(BSD) || defined(__FreeBSD__) || defined(__APPLE__))
 #include <sys/socket.h>
-//#include <linux/sysctl.h>
-//#include <sys/sysctl.h>
 #include <net/if_dl.h>
 #endif
-//#include <linux/if.h>
 
 #if (defined(__APPLE__))
 #include <net/route.h>
@@ -508,7 +505,7 @@ create_udn (char *interface)
   char *buf;
   unsigned char *ptr;
 
-#if 0 // ( | defined(BSD) || defined(__FreeBSD__) || defined(__APPLE__))
+#if 0 //(defined(BSD) || defined(__FreeBSD__) || defined(__APPLE__))
   int mib[6];
   size_t len;
   struct if_msghdr *ifm;
@@ -520,7 +517,7 @@ create_udn (char *interface)
   if (!interface)
     return NULL;
 
-#if 0 //(0 | defined(BSD) || defined(__FreeBSD__) || defined(__APPLE__))
+#if 0 //(defined(BSD) || defined(__FreeBSD__) || defined(__APPLE__))
   mib[0] = CTL_NET;
   mib[1] = AF_ROUTE;
   mib[2] = 0;
@@ -737,7 +734,7 @@ setup_i18n(void)
 #ifdef HAVE_SETLOCALE
   setlocale (LC_ALL, "");
 #endif
-#if (0 && !defined(BSD) && !defined(__FreeBSD__))
+#if (!defined(HAVE_ANDROID_OS) && !defined(BSD) && !defined(__FreeBSD__))
   bindtextdomain (PACKAGE, LOCALEDIR);
 #endif
   textdomain (PACKAGE);

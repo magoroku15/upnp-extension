@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+include /usr/share/quilt/quilt.make
+
+override_dh_install:
+	dh_install
+	# Remove empty documentation files
+	find debian/libexif-dev/usr/share/doc/libexif-dev/libexif-api.html \
+		-empty -delete
+
+build: $(QUILT_STAMPFN) build-stamp
+build-stamp:
+	cp /usr/share/misc/config.sub .
+	cp /usr/share/misc/config.guess .
+	dh build
+	touch $@
+
+clean: unpatch
+clean:
+	dh $@
+	rm -f config.guess config.sub
+
+# Upstream sources contains a directory named 'binary'
+# which breaks the build, the following rule fix it
+binary: binary-arch binary-indep
+
+%:
+	dh $@

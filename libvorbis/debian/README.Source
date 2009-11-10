@@ -1,0 +1,8 @@
+The upstream source package is modified as follows, and repacked as the
+"dfsg" version:
+
+remove doc/draft-kerr-avt-vorbis-rtp-03.txt
+remove doc/draft-kerr-avt-vorbis-rtp-03.xml
+
+These files are a draft RFC that is not licensed under a
+DFSG-free license, so cannot be included in Debian.

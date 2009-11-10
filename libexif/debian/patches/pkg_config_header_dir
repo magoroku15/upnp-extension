@@ -1,0 +1,9 @@
+Fix pkg-config include directory for libexif.
+--- libexif-0.6.15~/libexif.pc.in	2007-05-25 10:09:25.000000000 +0200
++++ libexif-0.6.15/libexif.pc.in	2007-05-25 10:10:00.770905277 +0200
+@@ -8,4 +8,4 @@
+ Requires:
+ Version: @VERSION@
+ Libs: -L${libdir} -lexif -lm
+-Cflags: -I${includedir}
++Cflags: -I${includedir}/libexif

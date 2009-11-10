@@ -1,0 +1,55 @@
+--- libvorbis-1.2.0.dfsg.orig/doc/Makefile.am
++++ libvorbis-1.2.0.dfsg/doc/Makefile.am
+@@ -6,8 +6,6 @@
+ 
+ ### all of the static docs, commited to SVN and included as is
+ static_docs = \
+-	draft-ietf-avt-rtp-vorbis-06.xml \
+-	draft-ietf-avt-rtp-vorbis-06.txt \
+ 	eightphase.png \
+ 	evenlsp.png \
+ 	floor1_inverse_dB_table.html \
+@@ -100,10 +98,6 @@
+ $(BUILDDIR)/Vorbis_I_spec.xml: $(doc_sources)
+ 	@mkdir -p $(BUILDDIR)
+ 	@for file in $(doc_sources); do cp $(srcdir)/$$file $(BUILDDIR); done
+-# translate the draft rtp.txt to .xml in the BUILDDIR
+-$(BUILDDIR)/draft-rtp.xml: draft-ietf-avt-rtp-vorbis-05.txt
+-	cat $< | sed 's///g' > $@
+-# cat $< | sed 's///g' | sed 's/</\&lt;/g' | sed 's/>/\&gt;/g' > $@
+ 
+ # explicit rules for generating docs
+ if BUILD_DOCS
+--- libvorbis-1.2.0.dfsg.orig/doc/Makefile.in
++++ libvorbis-1.2.0.dfsg/doc/Makefile.in
+@@ -201,8 +201,6 @@
+ 
+ ### all of the static docs, commited to SVN and included as is
+ static_docs = \
+-	draft-ietf-avt-rtp-vorbis-06.xml \
+-	draft-ietf-avt-rtp-vorbis-06.txt \
+ 	eightphase.png \
+ 	evenlsp.png \
+ 	floor1_inverse_dB_table.html \
+@@ -628,10 +626,6 @@
+ $(BUILDDIR)/Vorbis_I_spec.xml: $(doc_sources)
+ 	@mkdir -p $(BUILDDIR)
+ 	@for file in $(doc_sources); do cp $(srcdir)/$$file $(BUILDDIR); done
+-# translate the draft rtp.txt to .xml in the BUILDDIR
+-$(BUILDDIR)/draft-rtp.xml: draft-ietf-avt-rtp-vorbis-05.txt
+-	cat $< | sed 's///g' > $@
+-# cat $< | sed 's///g' | sed 's/</\&lt;/g' | sed 's/>/\&gt;/g' > $@
+ 
+ # explicit rules for generating docs
+ @BUILD_DOCS_TRUE@Vorbis_I_spec.html: $(SPEC_PNG_BUILD) $(BUILDDIR)/Vorbis_I_spec.xml
+--- libvorbis-1.2.0.dfsg.orig/doc/index.html
++++ libvorbis-1.2.0.dfsg/doc/index.html
+@@ -84,8 +84,6 @@
+ <li>Vorbis I specification [<a href="Vorbis_I_spec.html">html</a>]
+   [<a href="Vorbis_I_spec.pdf">pdf</a>]</li>
+ <li><a href="v-comment.html">Vorbis comment header specification</a></li>
+-<li><a href="draft-ietf-avt-rtp-vorbis-06.txt">Embedding Vorbis encoded 
+-audio in an RTP payload format</a></li>
+ </ul>
+ 
+ <h2>Ogg Vorbis programming documents</h2>
