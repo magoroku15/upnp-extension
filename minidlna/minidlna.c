@@ -218,7 +218,11 @@ init(int argc, char * * argv)
 	struct sigaction sa;
 	/*const char * logfilename = 0;*/
 	const char * presurl = 0;
+#if 1
+	const char * optionsfile = "/system/etc/minidlna.conf";
+#else
 	const char * optionsfile = "/etc/minidlna.conf";
+#endif
 	char mac_str[13];
 	char * string, * word;
 	enum media_types type;

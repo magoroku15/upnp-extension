@@ -5,12 +5,12 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#define OS_NAME		"Ubuntu"
-#define OS_VERSION	"Ubuntu/9.10"
-#define OS_URL		"http://www.debian.org/"
+#define OS_NAME		"Android"
+#define OS_VERSION	"Android1.5"
+#define OS_URL		"http://www.android.org/"
 
 /* full path of the file database */
-#define DB_PATH		"/data/local/tmp/minidlna"
+#define DB_PATH		"/minidlna"
 
 /* Comment the following line to use home made daemonize() func instead
  * of BSD daemon() */

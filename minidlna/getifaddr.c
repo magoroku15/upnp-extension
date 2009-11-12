@@ -96,11 +96,11 @@ getsyshwaddr(char * buf, int len)
 #if 1
 	if(len > 12)
 	{
-		memset(buf, 0xff, 12);
+		memset(buf, '1', 12);
 	}
 	else if(len == 6)
 	{
-		memset(buf, 0xff, 6);
+		memset(buf, '1', 6);
 	}
 	return 0;
 
