@@ -1048,10 +1048,29 @@ send_file(struct upnphttp * h, int sendfd, off_t offset, off_t end_offset)
 {
 	off_t send_size;
 	off_t ret;
+#if 1
+	int len, rv;
+	#define BUFSZ (1024)
+	char buf[BUFSZ];
+	send_size = ( ((end_offset - offset) < MAX_BUFFER_SIZE) ? 
+			(end_offset - offset + 1) : MAX_BUFFER_SIZE);
 
+	//ret = sendfile(h->socket, sendfd, &offset, send_size);
+	while( offset < end_offset )
+	{
+		lseek(sendfd, offset, 0);
+		len = read(sendfd, buf, BUFSZ);	
+		rv = write(h->socket, buf, len);	
+		DPRINTF(E_DEBUG, L_HTTP, 
+			"sendfile offset %d len %d  rv %d\n",
+			offset, len, rv);
+		offset += len;
+	}
+#else
 	while( offset < end_offset )
 	{
 		send_size = ( ((end_offset - offset) < MAX_BUFFER_SIZE) ? (end_offset - offset + 1) : MAX_BUFFER_SIZE);
+		DPRINTF(E_DEBUG, L_HTTP, "sendfile %d %d\n", offset, send_size);
 		ret = sendfile(h->socket, sendfd, &offset, send_size);
 		if( ret == -1 )
 		{
@@ -1059,11 +1078,12 @@ send_file(struct upnphttp * h, int sendfd, off_t offset, off_t end_offset)
 			if( errno != EAGAIN )
 				break;
 		}
-		/*else
+		else
 		{
 			DPRINTF(E_DEBUG, L_HTTP, "sent %lld bytes to %d. offset is now %lld.\n", ret, h->socket, offset);
-		}*/
+		}
 	}
+#endif
 }
 
 void
