@@ -45,7 +45,9 @@ LOCAL_SRC_FILES := \
         upnp/src/uuid/uuid.c \
         upnp/src/urlconfig/urlconfig.c
 
+#FST FUJITA 2009.11.14
 LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE -DDEBUG 
+#LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/ixml/src/inc/ 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/ixml/inc/
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/threadutil/inc/
@@ -54,9 +56,11 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/upnp/src/inc/
 
 LOCAL_MODULE:= libupnp
 
-include $(BUILD_STATIC_LIBRARY)
+LOCAL_PRELINK_MODULE := false
+#include $(BUILD_STATIC_LIBRARY)
+include $(BUILD_SHARED_LIBRARY)
 
-include $(TOP)/upnp/sample/tvcombo/Android.mk
-include $(TOP)/upnp/sample/tvctrlpt/Android.mk
-include $(TOP)/upnp/sample/tvdevice/Android.mk
+#include $(TOP)/upnp/sample/tvcombo/Android.mk
+#include $(TOP)/upnp/sample/tvctrlpt/Android.mk
+#include $(TOP)/upnp/sample/tvdevice/Android.mk
 

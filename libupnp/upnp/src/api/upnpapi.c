@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 //
 // Copyright (c) 2000-2003 Intel Corporation 
 // All rights reserved. 
@@ -168,6 +168,7 @@ int UpnpInit( IN const char *HostIP,
 
     if( UpnpSdkInit == 1 ) {
         // already initialized
+return 1;
         return UPNP_E_INIT;
     }
 
@@ -178,6 +179,7 @@ int UpnpInit( IN const char *HostIP,
 	if ( err != 0 ) {
 		/* Tell the user that we could not find a usable */
 		/* WinSock DLL.                                  */
+return 2;
 		return UPNP_E_INIT_FAILED;
 	}
 
@@ -192,6 +194,7 @@ int UpnpInit( IN const char *HostIP,
 		/* Tell the user that we could not find a usable */
 		/* WinSock DLL.                                  */
 		WSACleanup( );
+return 3;
 		return UPNP_E_INIT_FAILED; 
 	}
 
@@ -203,6 +206,7 @@ int UpnpInit( IN const char *HostIP,
     srand( time( NULL ) );      // needed by SSDP or other parts
 
     if( UpnpInitLog() != UPNP_E_SUCCESS ) {
+return 4;
              return UPNP_E_INIT_FAILED;
     }
 
@@ -214,15 +218,18 @@ int UpnpInit( IN const char *HostIP,
         memset(&GlobalHndRWLock, 0, sizeof(GlobalHndRWLock));
 #endif
     /*if (ithread_rwlock_init(&GlobalHndRWLock, NULL) != 0) {
+return 5;
         return UPNP_E_INIT_FAILED;
     }*/
 
     if (ithread_mutex_init(&gUUIDMutex, NULL) != 0) {
+return 6;
         return UPNP_E_INIT_FAILED;
     }
     // initialize subscribe mutex
 #ifdef INCLUDE_CLIENT_APIS
     if (ithread_mutex_init(&GlobalClientSubscribeMutex, NULL) != 0) {
+return 7;
         return UPNP_E_INIT_FAILED;
     }
 #endif
@@ -233,12 +240,14 @@ int UpnpInit( IN const char *HostIP,
     } else {
         if( getlocalhostname( LOCAL_HOST ) != UPNP_E_SUCCESS ) {
             HandleUnlock();
+return 8;
             return UPNP_E_INIT_FAILED;
         }
     }
 
     if( UpnpSdkInit != 0 ) {
         HandleUnlock();
+return 9;
         return UPNP_E_INIT;
     }
 
@@ -255,18 +264,21 @@ int UpnpInit( IN const char *HostIP,
     if( ThreadPoolInit( &gSendThreadPool, &attr ) != UPNP_E_SUCCESS ) {
         UpnpSdkInit = 0;
         UpnpFinish();
+return 10;
         return UPNP_E_INIT_FAILED;
     }
 
     if( ThreadPoolInit( &gRecvThreadPool, &attr ) != UPNP_E_SUCCESS ) {
         UpnpSdkInit = 0;
         UpnpFinish();
+return 11;
         return UPNP_E_INIT_FAILED;
     }
 
     if( ThreadPoolInit( &gMiniServerThreadPool, &attr ) != UPNP_E_SUCCESS ) {
         UpnpSdkInit = 0;
         UpnpFinish();
+return 12;
         return UPNP_E_INIT_FAILED;
     }
 
@@ -283,6 +295,7 @@ int UpnpInit( IN const char *HostIP,
         UPNP_E_SUCCESS ) {
         UpnpSdkInit = 0;
         UpnpFinish();
+return 13;
         return retVal;
     }
 #if EXCLUDE_MINISERVER == 0
@@ -291,6 +304,7 @@ int UpnpInit( IN const char *HostIP,
             "Miniserver failed to start" );
         UpnpFinish();
         UpnpSdkInit = 0;
+return 14;
         if( retVal != -1 )
             return retVal;
         else                    // if miniserver is already running for unknown reasons!
@@ -305,6 +319,7 @@ int UpnpInit( IN const char *HostIP,
           UpnpEnableWebserver( WEB_SERVER_ENABLED ) ) != UPNP_E_SUCCESS ) {
         UpnpFinish();
         UpnpSdkInit = 0;
+return 15;
         return retVal;
     }
 #endif
@@ -3780,8 +3795,13 @@ void printNodes( IXML_Node * tmpRoot, int depth )
 
     // Create an unbound datagram socket to do the SIOCGIFADDR ioctl on. 
     if( ( LocalSock = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP ) ) < 0 ) {
+#if 1 // magoroku local DEBUG
+        UpnpPrintf( UPNP_ALL, API, __FILE__, __LINE__,
+            "Can't create addrlist socket(%d)\n", errno );
+#else
         UpnpPrintf( UPNP_ALL, API, __FILE__, __LINE__,
             "Can't create addrlist socket\n" );
+#endif
         return UPNP_E_INIT;
     }
     // Get the interface configuration information... 

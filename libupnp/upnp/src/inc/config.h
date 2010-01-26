@@ -237,7 +237,11 @@
 #define EXCLUDE_SOAP 0
 #define EXCLUDE_GENA 0
 #define EXCLUDE_DOM  0
+#if 1 // magoroku local DEBUG
+#define EXCLUDE_MINISERVER 1
+#else
 #define EXCLUDE_MINISERVER 0
+#endif
 #define EXCLUDE_WEB_SERVER 0
 #ifdef USE_JNI
 #	define EXCLUDE_JNI 0

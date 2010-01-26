@@ -44,7 +44,9 @@
 #include "tivo_commands.h"
 #endif
 //#define MAX_BUFFER_SIZE 4194304 // 4MB -- Too much?
-#define MAX_BUFFER_SIZE 2147483647 // 2GB -- Too much?
+//#define MAX_BUFFER_SIZE 2147483647 // 2GB -- Too much?
+#define MAX_BUFFER_SIZE (1024*1024*1024) // 1GB
+
 
 #include "icons.c"
 
@@ -1048,7 +1050,7 @@ send_file(struct upnphttp * h, int sendfd, off_t offset, off_t end_offset)
 {
 	off_t send_size;
 	off_t ret;
-#if 1
+#if 0
 	int len, rv;
 	#define BUFSZ (1024)
 	char buf[BUFSZ];

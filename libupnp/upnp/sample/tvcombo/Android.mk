@@ -17,6 +17,7 @@ LOCAL_C_INCLUDES += $(UPNP_TOP)/upnp/sample/common/
 
 LOCAL_LDLIBS += -lpthread -lm
 LOCAL_MODULE := upnp_tv_combo.bin
-LOCAL_STATIC_LIBRARIES := libupnp 
+#LOCAL_STATIC_LIBRARIES := libupnp 
+LOCAL_SHARED_LIBRARIES := libupnp 
 include $(BUILD_EXECUTABLE)
 

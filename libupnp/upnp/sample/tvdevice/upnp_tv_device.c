@@ -1964,6 +1964,12 @@ TvDeviceStart( char *ip_address,
         ( "Initializing UPnP Sdk with \n \t ipaddress = %s port = %d\n",
           ip_address, port );
 
+#ifdef DEBUG // magoroku local 
+    /* Caution exist file */
+    UpnpSetLogFileNames("/data/app/libupnp_server_errlog.txt",
+        "/data/app/libupnp_server_infolog.txt");
+#endif
+
     if( ( ret = UpnpInit( ip_address, port ) ) != UPNP_E_SUCCESS ) {
         SampleUtil_Print( "Error with UpnpInit -- %d\n", ret );
         UpnpFinish(  );
