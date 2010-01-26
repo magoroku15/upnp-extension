@@ -45,7 +45,7 @@ LOCAL_SRC_FILES := \
         upnp/src/uuid/uuid.c \
         upnp/src/urlconfig/urlconfig.c
 
-#FST FUJITA 2009.11.14
+#
 LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE -DDEBUG 
 #LOCAL_CFLAGS += -Wno-format -DHAVE_CONFIG_H  -D_THREAD_SAFE
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/ixml/src/inc/ 

@@ -42,6 +42,6 @@ LOCAL_LDLIBS= -lz
 LOCAL_MODULE:= ushare
 LOCAL_STATIC_LIBRARIES := libupnp libdlna libavformat libavcodec libavutil libz
 
-include $(BUILD_EXECUTABLE)
+#include $(BUILD_EXECUTABLE)
 
 

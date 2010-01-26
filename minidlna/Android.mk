@@ -45,9 +45,9 @@ LOCAL_C_INCLUDES += external/ipsec-tools/src/include-glibc/
 LOCAL_C_INCLUDES += external/jpeg
 
 
-LOCAL_STATIC_LIBRARIES := libupnp libdlna libavformat libavcodec libavutil libz libjpeg libid3tag libFLAC libvorbis libogg libexif
+LOCAL_SHARED_LIBRARIES := libupnp libsqlite
 
-LOCAL_SHARED_LIBRARIES := libsqlite 
+LOCAL_STATIC_LIBRARIES := libdlna libavformat libavcodec libavutil libz libjpeg libid3tag libFLAC libvorbis libogg libexif 
 
 LOCAL_MODULE:= minidlna
 
