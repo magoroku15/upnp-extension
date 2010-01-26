@@ -211,6 +211,7 @@ int DebugAtThisLevel(
  * Returns: void
  ***************************************************************************/
 #ifdef DEBUG
+#ifdef DEBUGPRINT
 void UpnpPrintf(
 	IN Upnp_LogLevel DLevel,
 	IN Dbg_Module Module,
@@ -249,6 +250,17 @@ void UpnpPrintf(
 	va_end(ArgList);
 	ithread_mutex_unlock(&GlobalDebugMutex);
 }
+#else
+void UpnpPrintf(
+	IN Upnp_LogLevel DLevel,
+	IN Dbg_Module Module,
+	IN const char *DbgFileName,
+	IN int DbgLineNo,
+	IN const char *FmtStr,
+	... )
+{
+}
+#endif
 #endif
 
 
