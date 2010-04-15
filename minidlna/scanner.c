@@ -403,25 +403,32 @@ insert_directory(const char * name, const char * path, const char * base, const 
 
 	if( refID )
 	{
+printf("%d\n", __LINE__);
  		dir = strdup(path);
 		dir = dirname(dir);
 		asprintf(&id_buf, "%s%s$%X", base, parentID, objectID);
 		asprintf(&parent_buf, "%s%s", base, parentID);
 		while( !found )
 		{
+printf("%d\n", __LINE__);
 			if( strcmp(id_buf, last_found) == 0 )
 				break;
+printf("%d\n", __LINE__);
 			if( sql_get_int_field(db, "SELECT count(*) from OBJECTS where OBJECT_ID = '%s'", id_buf) > 0 )
 			{
+printf("%d\n", __LINE__);
 				strcpy(last_found, id_buf);
 				break;
 			}
+printf("%d\n", __LINE__);
 			/* Does not exist.  Need to create, and may need to create parents also */
 			sql = sqlite3_mprintf("SELECT DETAIL_ID from OBJECTS where OBJECT_ID = '%s'", refID);
+printf("%d\n", __LINE__);
 			if( (sql_get_table(db, sql, &result, &rows, NULL) == SQLITE_OK) && rows )
 			{
 				detailID = atoi(result[1]);
 			}
+printf("%d\n", __LINE__);
 			sqlite3_free_table(result);
 			sqlite3_free(sql);
 			sql_exec(db, "INSERT into OBJECTS"
@@ -437,12 +444,18 @@ insert_directory(const char * name, const char * path, const char * base, const 
 				*rindex(refID, '$') = '\0';
 			dir = dirname(dir);
 		}
+printf("%d\n", __LINE__);
 		free(refID);
+printf("%d\n", __LINE__);
 		free(parent_buf);
+printf("%d\n", __LINE__);
 		free(id_buf);
-		free(dir);
+printf("%d %d\n", __LINE__, dir);
+		//free(dir);
+printf("%d\n", __LINE__);
 		return 1;
 	}
+printf("%d\n", __LINE__);
 
 	detailID = GetFolderMetadata(name, path, NULL, NULL, NULL);
 	sql_exec(db, "INSERT into OBJECTS"
@@ -467,12 +480,13 @@ insert_file(char * name, const char * path, const char * parentID, int object)
 	int typedir_objectID;
 	char * baseid;
 	char * orig_name = NULL;
-
+printf("call insert_file %s\n", name);
 	if( is_image(name) )
 	{
 		strcpy(base, IMAGE_DIR_ID);
 		strcpy(class, "item.imageItem.photo");
 		detailID = GetImageMetadata(path, name);
+printf("%d\n", __LINE__);
 	}
 	else if( is_video(name) )
 	{
@@ -482,12 +496,14 @@ insert_file(char * name, const char * path, const char * parentID, int object)
 		detailID = GetVideoMetadata(path, name);
 		if( !detailID )
 			strcpy(name, orig_name);
+printf("%d\n", __LINE__);
 	}
 	if( !detailID && is_audio(name) )
 	{
 		strcpy(base, MUSIC_DIR_ID);
 		strcpy(class, "item.audioItem.musicTrack");
 		detailID = GetAudioMetadata(path, name);
+printf("%d\n", __LINE__);
 	}
 	if( orig_name )
 		free(orig_name);
@@ -496,6 +512,7 @@ insert_file(char * name, const char * path, const char * parentID, int object)
 		DPRINTF(E_WARN, L_SCANNER, "Unsuccessful getting details for %s!\n", path);
 		return -1;
 	}
+printf("%d\n", __LINE__);
 
 	sprintf(objectID, "%s%s$%X", BROWSEDIR_ID, parentID, object);
 
@@ -505,26 +522,33 @@ insert_file(char * name, const char * path, const char * parentID, int object)
 	             " ('%s', '%s%s', '%s', %lu, '%q')",
 	             objectID, BROWSEDIR_ID, parentID, class, detailID, name);
 
+printf("%d\n", __LINE__);
 	if( *parentID )
 	{
+printf("%d\n", __LINE__);
 		typedir_objectID = 0;
 		typedir_parentID = strdup(parentID);
 		baseid = rindex(typedir_parentID, '$');
 		if( baseid )
 		{
+printf("%d %s\n", __LINE__, baseid+1);
 			sscanf(baseid+1, "%X", &typedir_objectID);
 			*baseid = '\0';
 		}
 		insert_directory(name, path, base, typedir_parentID, typedir_objectID);
+printf("%d\n", __LINE__);
 		free(typedir_parentID);
 	}
+printf("%d\n", __LINE__);
 	sql_exec(db, "INSERT into OBJECTS"
 	             " (OBJECT_ID, PARENT_ID, REF_ID, CLASS, DETAIL_ID, NAME) "
 	             "VALUES"
 	             " ('%s%s$%X', '%s%s', '%s', '%s', %lu, '%q')",
 	             base, parentID, object, base, parentID, objectID, class, detailID, name);
+printf("%d\n", __LINE__);
 
 	insert_containers(name, path, objectID, class, detailID);
+printf("leave insert_file \n");
 	return 0;
 }
 
@@ -732,9 +756,11 @@ ScanDirectory(const char * dir, const char * parent, enum media_types dir_type)
 		startID = get_next_available_id("OBJECTS", BROWSEDIR_ID);
 	}
 
+printf("n = %d\n", n);
 	for (i=0; i < n; i++)
 	{
 		type = TYPE_UNKNOWN;
+printf("%s/%s\n", dir, namelist[i]->d_name);
 		sprintf(full_path, "%s/%s", dir, namelist[i]->d_name);
 		name = escape_tag(namelist[i]->d_name);
 		if( namelist[i]->d_type == DT_DIR )

@@ -718,7 +718,7 @@ main(int argc, char * * argv)
 			}
 			sqlite3_close(db);
 			unlink(DB_PATH "/files.db");
-			system("rm -rf " DB_PATH "/art_cache");
+			//system("rm -rf " DB_PATH "/art_cache");
 			sqlite3_open(DB_PATH "/files.db", &db);
 			sqlite3_busy_timeout(db, 5000);
 			if( CreateDatabase() != 0 )
